@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: springboot-app
+    env: java
+    plan: free
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "java -jar target/*.jar --server.port=$PORT"
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: springboot-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: springboot-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: springboot-db
+          property: password
+
+databases:
+  - name: springboot-db
+    plan: free
