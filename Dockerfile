@@ -1,14 +1,12 @@
-# Usa una imagen oficial de Java 21 (compatible con tu proyecto)
-FROM eclipse-temurin:21-jdk
-
-# Establece el directorio de trabajo dentro del contenedor
+# Etapa 1: build con Maven y JDK 17
+FROM maven:3.8.3-openjdk-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copia el JAR compilado al contenedor
-COPY target/Banking-App-0.0.1-SNAPSHOT.jar app.jar
-
-# Expone el puerto 8080 (o el que uses en tu app)
+# Etapa 2: runtime con OpenJDK 17
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Comando para ejecutar tu aplicación Spring Boot
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
