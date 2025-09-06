@@ -1,0 +1,5 @@
+web: java -Dspring.profiles.active=default -Dserver.port=$PORT -jar target/*.war
+
+6. Commit y push de los cambios
+7. Desplegar en Heroku
+8. Suscríbete :D
