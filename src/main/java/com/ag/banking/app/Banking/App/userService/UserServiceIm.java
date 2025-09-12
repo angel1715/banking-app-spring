@@ -59,6 +59,10 @@ public class UserServiceIm implements UserServiceI {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).
                     body("Email is already in use");
         }
+        if (userRepository.existsByPhoneNumber(user.getPhone())){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                    body("Phone number is already in use");
+        }
         // Encrypt the password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
