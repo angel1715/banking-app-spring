@@ -7,9 +7,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByAccountNumber(String accountNumber);
     boolean existsByCardNumber(String cardNumber);
 
-    /* Ese método revisa en la base de datos si existe al menos un
-       registro cuya columna email coincida con el valor que pasas como parámetro.*/
+    /*
+    This method checks the database to see if there is at least
+    one record whose email column matches the value you pass as a parameter..*/
     boolean existsByEmail(String email);
-    boolean existsByPhoneNumber(String phone);
+
 
 }
