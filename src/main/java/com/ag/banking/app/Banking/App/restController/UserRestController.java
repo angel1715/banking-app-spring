@@ -23,7 +23,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/banking")
 @EnableMethodSecurity
-@CrossOrigin(origins = {"https://banking-app-eta-sepia.vercel.app/", "http://localhost:5174/"})
+@CrossOrigin(value = "https://banking-app-eta-sepia.vercel.app")
 public class UserRestController {
 
     @Autowired
