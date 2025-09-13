@@ -23,10 +23,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/banking")
 @EnableMethodSecurity
-@CrossOrigin(
-        origins = "https://bankingap.vercel.app", // tu frontend
-        allowCredentials = "true"
-)
+@CrossOrigin(origins = "https://bankingap.vercel.app", allowCredentials = "true")
 public class UserRestController {
 
     @Autowired
